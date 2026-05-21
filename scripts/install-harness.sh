@@ -11,13 +11,15 @@ Options:
   -d, --directory <path>  Target directory. Defaults to the current directory.
   -y, --yes              Accepted for compatibility; no prompts are shown.
       --merge            Explicitly use the default merge behavior: create
-                         missing Harness files and skip existing files.
+                         missing Harness files, augment existing AGENTS.md,
+                         and skip other existing files.
       --dry-run          Show what would change without writing files.
   -h, --help             Show this help.
 
 Safety:
-  Existing files are never overwritten. If AGENTS.md, docs/, or other target
-  files already exist, the installer skips them and creates only missing files.
+  Existing files are never overwritten. If AGENTS.md already exists, a marked
+  Crisp Harness section is appended once. Other existing files are skipped, and
+  missing files are created.
 
 Examples:
   curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash
@@ -74,6 +76,11 @@ copy_file() {
       return
     fi
 
+    if [ "$relative" = "AGENTS.md" ]; then
+      merge_agents_file "$target"
+      return
+    fi
+
     log "skip     $relative (already exists)"
     SKIPPED=$((SKIPPED + 1))
     return
@@ -87,6 +94,51 @@ copy_file() {
     log "created  $relative"
   fi
   CREATED=$((CREATED + 1))
+}
+
+merge_agents_file() {
+  local target="$1"
+
+  if grep -Fq "<!-- crisp-harness:start -->" "$target"; then
+    log "skip     AGENTS.md (Crisp Harness section already present)"
+    SKIPPED=$((SKIPPED + 1))
+    return
+  fi
+
+  if [ "$DRY_RUN" -eq 1 ]; then
+    log "merge    AGENTS.md (append Crisp Harness instructions)"
+  else
+    cat >> "$target" <<'EOF'
+
+<!-- crisp-harness:start -->
+## Crisp Harness
+
+This project also uses Crisp Harness for AI-agent collaboration.
+
+Keep the existing project instructions above authoritative. Use the harness as
+the local workflow for intake, story packets, validation expectations,
+decisions, and handoffs.
+
+Start every task by reading:
+
+- `README.md`
+- `AGENTS.md`
+- `docs/WORK_INTAKE.md`
+
+If `docs/ADOPTION_STATUS.md` says `not_started`, route through
+`docs/FIRST_ADOPTION.md` before normal feature work. If it says `ready`, use the
+source router in this file and read only the task-relevant product docs, stories,
+test matrix rows, decisions, or handoffs.
+
+Do not read or print secrets such as `.env` values. Do not overwrite existing
+project conventions just to fit the harness; adapt the harness around local
+truth.
+<!-- crisp-harness:end -->
+EOF
+    log "merged   AGENTS.md (appended Crisp Harness instructions)"
+  fi
+
+  MERGED=$((MERGED + 1))
 }
 
 source_relative_for_target() {
@@ -147,7 +199,7 @@ check_protected_target_paths() {
     fi
   done
 
-  log "Existing Harness paths found: $joined. Existing files will be skipped; missing files will be created."
+  log "Existing Harness paths found: $joined. Existing AGENTS.md will be augmented once; other existing files will be skipped; missing files will be created."
 }
 
 TARGET_INPUT="${HARNESS_TARGET_DIR:-$PWD}"
@@ -218,6 +270,7 @@ fi
 TARGET_DIR="$(make_absolute_parent "$(expand_path "$TARGET_INPUT")")"
 CREATED=0
 SKIPPED=0
+MERGED=0
 
 if [ "$DRY_RUN" -eq 1 ]; then
   log "Dry run: no files will be written."
@@ -300,8 +353,8 @@ docs/templates/high-risk-story/validation.md
 EOF
 
 log ""
-log "Done. Created: $CREATED, skipped: $SKIPPED."
+log "Done. Created: $CREATED, merged: $MERGED, skipped: $SKIPPED."
 
 if [ "$SKIPPED" -gt 0 ]; then
-  log "Existing files were left untouched."
+  log "Existing non-AGENTS files were left untouched."
 fi

@@ -38,7 +38,8 @@ core project context is missing instead of guessing.
 Evaluator acceptance criteria:
 
 - Running the installer without `--yes` does not wait for user input.
-- A target install still creates missing files and skips existing files.
+- A target install still creates missing files, augments existing `AGENTS.md`,
+  and skips other existing files.
 - Target-installed `AGENTS.md` includes the specific-question instruction.
 
 Failure thresholds:

@@ -23,17 +23,18 @@ conversation memory.
 
 ## Cautious Merge
 
-An installer mode for existing projects that copies missing harness files while
-leaving existing `AGENTS.md` and `docs/` content untouched. A cautious merge is
-a bootstrap step, not automatic reconciliation; a human should review conflicts
-and ask an agent to adapt the harness manually when project instructions already
-exist.
+An installer mode for existing projects that copies missing harness files,
+appends a marked Crisp Harness section to an existing `AGENTS.md`, and leaves
+other existing docs untouched. A cautious merge is a bootstrap step, not
+automatic reconciliation; a human should review conflicts and ask an agent to
+adapt the harness manually when project instructions already exist.
 
 ## Create-Missing Install
 
 The installer behavior for target projects: create harness files that do not
-exist and skip files that already exist. The installer does not overwrite, move,
-or back up target project files.
+exist, augment an existing `AGENTS.md` with a marked Crisp section, and skip
+other files that already exist. The installer does not overwrite, move, or back
+up target project files.
 
 ## Canonical Default
 

@@ -78,7 +78,8 @@ Evaluator acceptance criteria:
   `not_started` and `docs/FIRST_ADOPTION.md`.
 - No new application source folders, package scripts, CI, or tests are
   scaffolded.
-- Existing installer create-missing/skip-existing behavior remains unchanged.
+- Existing installer create-missing, AGENTS augmentation, and skip-existing
+  behavior remains unchanged.
 
 Failure thresholds:
 

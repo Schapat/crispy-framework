@@ -9,11 +9,15 @@ to a target project directory. It is intended to become the remote installer
 after this framework is published, while still working from a local checkout
 during the initial phase. It defaults to the current directory, accepts a target
 path, creates missing harness files, and skips files that already exist.
-Existing files are never overwritten.
+Existing files are never overwritten. Existing `AGENTS.md` files receive a
+marked Crisp Harness section once so future agents can discover the installed
+harness without losing local project instructions.
 
 Target installs receive a target-safe `AGENTS.md` from
 `docs/templates/seed/AGENTS.md`, not this source repository's own
-source-specific agent guide.
+source-specific agent guide, when the target does not already have `AGENTS.md`.
+When `AGENTS.md` already exists, the installer appends a compact Crisp Harness
+section instead of replacing the file.
 They also receive a target-safe `README.md` from
 `docs/templates/seed/README.md`, not this source repository's framework README.
 
@@ -26,10 +30,10 @@ harness after install; this source repository does not provide an ongoing
 upstream update relationship yet.
 
 Merge behavior is cautious and is now the default: it copies missing harness
-files and leaves existing project instructions, docs, and scripts untouched.
-Treat merge as a bootstrap step, not automatic reconciliation. A human should
-review conflicts and ask an AI agent to adapt the harness manually for the
-target project.
+files, appends a marked Crisp Harness section to existing `AGENTS.md`, and
+leaves other existing project docs and scripts untouched. Treat merge as a
+bootstrap step, not automatic reconciliation. A human should review conflicts
+and ask an AI agent to adapt the harness manually for the target project.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash

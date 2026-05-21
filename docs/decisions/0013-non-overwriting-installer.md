@@ -13,15 +13,17 @@ mode could replace a target project's local `AGENTS.md` or `docs/` after moving
 them to a backup folder. Even with backups, that mode increases risk and
 complexity for humans incorporating the framework into real projects.
 
-The desired installer behavior is simpler: create files that do not exist and
-leave existing files untouched.
+The desired installer behavior is simpler: create files that do not exist,
+preserve existing local files, and make the harness discoverable when a target
+already has local agent instructions.
 
 ## Decision
 
 Remove installer override behavior.
 
 The installer now uses merge behavior by default. It creates missing harness
-files and skips existing files. It does not overwrite, replace, move, or back up
+files, appends a marked Crisp Harness section to an existing `AGENTS.md` once,
+and skips other existing files. It does not overwrite, replace, move, or back up
 target files.
 
 ## Alternatives Considered
@@ -39,16 +41,18 @@ target files.
 Positive:
 
 - Existing projects cannot be overwritten by the installer.
-- The installer contract is easier to explain: create missing files, skip
-  existing files.
+- Existing project agent instructions remain in place while receiving a compact
+  pointer to Crisp Harness.
+- The installer contract is easier to explain: create missing files, augment
+  existing `AGENTS.md`, skip other existing files.
 - Humans can ask an AI agent to adapt the harness manually after install.
 
 Tradeoffs:
 
 - The installer no longer provides a one-command way to replace existing
   governance files.
-- A target project with conflicting old files needs manual review and local
-  adaptation.
+- A target project with conflicting old files still needs manual review and
+  local adaptation.
 
 ## Follow-Up
 

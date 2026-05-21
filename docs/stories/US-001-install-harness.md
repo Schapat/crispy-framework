@@ -28,7 +28,8 @@ scripts, CI, tests, or product implementation.
   positional argument.
 - The installer does not prompt for a target directory.
 - If `AGENTS.md`, `docs/`, or any harness file already exists in the target, the
-  installer skips existing files and creates only missing files.
+  installer augments existing `AGENTS.md`, skips other existing files, and
+  creates only missing files.
 - Existing files are never overwritten by the installer.
 - A dry-run mode reports planned file operations without writing files.
 - The installer copies only Harness v0 operating files and does not scaffold
@@ -76,6 +77,7 @@ implementation surfaces are not scaffolded.
 - `HARNESS_SOURCE_BASE_URL="file:///path/to/your/crisp-harness" bash -s -- --directory "$DRY_TARGET" --yes --dry-run < scripts/install-harness.sh`
 
 Validated behaviors: dry-run writes no files, real install creates the harness
-structure, no target prompt is shown, existing files are left untouched, missing
-files are created in existing targets, and target projects do not receive
-`scripts/install-harness.sh` or this installer story.
+structure, no target prompt is shown, existing `AGENTS.md` is augmented, other
+existing files are left untouched, missing files are created in existing
+targets, and target projects do not receive `scripts/install-harness.sh` or this
+installer story.

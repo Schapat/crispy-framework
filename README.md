@@ -191,8 +191,10 @@ The installed harness is a canonical default, not sacred text. Target projects
 should adapt it once their product, stack, proof commands, risk boundaries, and
 team habits are known.
 
-If the target already has `AGENTS.md`, `docs/`, or any harness file, the
-installer keeps existing files and creates only missing files:
+If the target already has `AGENTS.md`, the installer preserves the existing
+content and appends a marked Crisp Harness section once. Other existing files
+under `docs/` or elsewhere are skipped, and only missing harness files are
+created. `--merge` is accepted as an explicit alias for this default behavior:
 
 ```bash
 scripts/install-harness.sh --merge
@@ -204,11 +206,12 @@ Or preview the install:
 scripts/install-harness.sh --directory /path/to/project --dry-run
 ```
 
-Existing files are never overwritten by the installer. Use `--dry-run` to
-preview changes. The installer itself and this repository's helper scripts and
-installer story are not copied into the target project. Target installs receive
-blank seed `docs/TEST_MATRIX.md` and `docs/HARNESS_BACKLOG.md` files rather than
-this source repository's historical traceability rows.
+Existing files are never overwritten by the installer. Existing `AGENTS.md`
+files are augmented, not replaced. Use `--dry-run` to preview changes. The
+installer itself and this repository's helper scripts and installer story are
+not copied into the target project. Target installs receive blank seed
+`docs/TEST_MATRIX.md` and `docs/HARNESS_BACKLOG.md` files rather than this
+source repository's historical traceability rows.
 
 The installer script is kept as a local reference utility. If you later publish
 this project from a different repository path, update the installer default raw

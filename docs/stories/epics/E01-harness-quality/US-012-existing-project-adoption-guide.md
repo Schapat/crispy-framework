@@ -58,7 +58,8 @@ Evaluator acceptance criteria:
   temporary-history language.
 - Target `docs/stories/backlog.md` does not include source-repository epics such
   as `E01-harness-quality`.
-- Existing-target install behavior remains create-missing/skip-existing.
+- Existing-target install behavior remains create-missing, AGENTS augmentation,
+  and skip-existing for other files.
 
 Failure thresholds:
 
