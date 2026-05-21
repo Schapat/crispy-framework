@@ -27,7 +27,7 @@ the intended remote flow is a simple command run from the target project
 directory:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vietdzungdang/agent-harness/main/scripts/install-harness.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash
 ```
 
 The raw GitHub URL is provisional until the first GitHub publication and should

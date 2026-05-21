@@ -8,6 +8,10 @@ The output of adoption is not a rewrite of the project. The output is enough
 local context and story structure for AI agents to work safely inside the
 existing project.
 
+For a first run after installation, start with `docs/FIRST_ADOPTION.md`. Use
+this document when the agent needs the full adoption checklist or deeper
+guidance.
+
 ## Adoption Flow
 
 ```text
@@ -61,6 +65,8 @@ Adopt only the harness files that help agents work with the existing project:
   exist or have been accepted
 - update `docs/TEST_MATRIX.md` with existing validation commands and proof
   expectations
+- adapt `docs/agents/` so agents know the local issue tracker, readiness
+  states, and domain-language sources
 - add `docs/decisions/` records for meaningful stack, architecture, scope, or
   proof decisions that are not already documented
 - create or update `docs/stories/backlog.md` as the durable local story index
@@ -94,8 +100,11 @@ explicitly asks for that cleanup.
 
 Adoption is ready when:
 
+- `docs/ADOPTION_STATUS.md` is `ready`
 - local project identity is understood
 - existing agent, contributor, setup, and validation guidance has been located
+- `docs/agents/` either reflects local tracker/domain/state conventions or
+  explicitly says none are configured yet
 - important commands are listed or the missing-command question is explicit
 - key risks and unknowns are visible
 - `AGENTS.md` reflects local adaptation needs

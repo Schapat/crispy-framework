@@ -9,9 +9,13 @@ future user-provided spec.
 - `PROJECT_GOVERNANCE.md`: general governance rules before coding starts.
 - `PROJECT_START.md`: how a new project becomes governed artifacts.
 - `PROJECT_ADOPTION.md`: how an existing project adopts the harness safely.
+- `ADOPTION_STATUS.md`: first-adoption marker and readiness checklist.
+- `FIRST_ADOPTION.md`: low-context first adoption workflow.
 - `WORK_INTAKE.md`: how prompts become tiny, normal, or high-risk work.
 - `CONTINUITY.md`: how unfinished work is paused, resumed, or handed off.
 - `AGENT_ONBOARDING.md`: how a new AI agent joins a project/session.
+- `agents/`: local agent configuration for issue trackers, work states, and
+  domain-doc conventions.
 - `AGENT_ROLES.md`: role guidance for orchestrator, discovery, worker, and
   validator contexts.
 - `ARCHITECTURE.md`: architecture discovery and boundary rules.

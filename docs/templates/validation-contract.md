@@ -14,6 +14,18 @@ Define correctness before implementation.
 | --- | --- | --- | --- |
 | VC-001 | | document \| unit \| integration \| E2E \| platform | |
 
+## Test Quality
+
+- Prefer proof through public interfaces, user-visible behavior, API contracts,
+  command behavior, or durable module boundaries.
+- Avoid tests that only prove private implementation details unless the private
+  boundary is the accepted contract for this slice.
+- Tests should survive reasonable refactors. If a test would fail because an
+  internal helper was renamed without changing behavior, move the proof to a
+  higher-value boundary.
+- Negative assertions should prove forbidden outcomes, not only happy-path
+  presence.
+
 ## Negative Assertions
 
 | ID | Forbidden outcome | Check |

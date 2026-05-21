@@ -16,6 +16,7 @@ only the lane-specific files needed for the task:
 | --- | --- |
 | Tiny docs or copy change | affected files only |
 | New project/spec intake | `docs/PROJECT_START.md`, `docs/templates/spec-intake.md` |
+| First existing-project adoption | `docs/ADOPTION_STATUS.md`, `docs/FIRST_ADOPTION.md`, `docs/PROJECT_ADOPTION.md` only if full checklist is needed |
 | Normal story-sized work | related story, `docs/TEST_MATRIX.md`, relevant `docs/product/` files |
 | High-risk or architecture-shaping work | `docs/ARCHITECTURE.md`, `docs/EVALUATION.md`, relevant decisions |
 | Long-running or multi-agent work | `docs/AGENT_ROLES.md`, selected Crisp templates, `docs/templates/handoff.md` |
@@ -23,6 +24,10 @@ only the lane-specific files needed for the task:
 
 Use `docs/HARNESS.md` for the full governance model and `docs/decisions/` only
 when rationale matters for the current change.
+Use `docs/agents/` when local issue tracker rules, story readiness states, or
+domain-language conventions matter for the current task.
+If `docs/ADOPTION_STATUS.md` exists and says `not_started`, route through
+`docs/FIRST_ADOPTION.md` before normal work.
 
 This harness does not ship with a project-specific `SPEC.md`. When the human
 provides a spec for a new project, treat that spec as input material for the

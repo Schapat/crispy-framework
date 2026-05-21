@@ -20,7 +20,7 @@ Safety:
   files already exist, the installer skips them and creates only missing files.
 
 Examples:
-  curl -fsSL https://raw.githubusercontent.com/vietdzungdang/agent-harness/main/scripts/install-harness.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash
   scripts/install-harness.sh
   scripts/install-harness.sh --directory /path/to/project --yes
   scripts/install-harness.sh ./my-project --merge
@@ -206,7 +206,7 @@ SCRIPT_PATH="${BASH_SOURCE[0]:-$0}"
 SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" 2>/dev/null && pwd -P || printf '')"
 SOURCE_ROOT=""
 SOURCE_MODE="remote"
-DEFAULT_SOURCE_BASE_URL="https://raw.githubusercontent.com/vietdzungdang/agent-harness/main"
+DEFAULT_SOURCE_BASE_URL="https://raw.githubusercontent.com/dzungbk156/crispy-framework/main"
 SOURCE_BASE_URL="${HARNESS_SOURCE_BASE_URL:-$DEFAULT_SOURCE_BASE_URL}"
 SOURCE_BASE_URL="${SOURCE_BASE_URL%/}"
 
@@ -255,6 +255,12 @@ done <<'EOF'
 AGENTS.md
 README.md
 docs/ARCHITECTURE.md
+docs/ADOPTION_STATUS.md
+docs/FIRST_ADOPTION.md
+docs/agents/README.md
+docs/agents/domain-docs.md
+docs/agents/issue-tracker.md
+docs/agents/work-states.md
 docs/AGENT_ROLES.md
 docs/EVALUATION.md
 docs/AGENT_ONBOARDING.md
@@ -279,6 +285,8 @@ docs/templates/context-questions.md
 docs/templates/design-concept.md
 docs/templates/handoff.md
 docs/templates/mission-plan.md
+docs/templates/product-glossary.md
+docs/templates/prototype.md
 docs/templates/research-facts.md
 docs/templates/spec-intake.md
 docs/templates/structure-outline.md

@@ -11,6 +11,22 @@ planned | in_progress | paused | blocked | implemented | changed | retired
 
 tiny | normal | high-risk
 
+## Execution Mode
+
+AFK | HITL
+
+Human needed for:
+
+- Decision, access, review, or approval that may block work.
+
+Ready for agent when:
+
+- Scope, affected files, validation expectations, and stop conditions are clear.
+
+Blocked by:
+
+- Missing input, decision, credential, external access, or unavailable command.
+
 ## Product Contract
 
 Describe the behavior this story must make true.

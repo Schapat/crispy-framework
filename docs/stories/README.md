@@ -15,6 +15,9 @@ story system and canonical work record for future work. They also receive a
 target-safe story backlog seed from `docs/templates/seed/stories-backlog.md`.
 
 Story packets may be active when they are `in_progress`, `paused`, or `blocked`.
+Stories may also declare `Execution Mode: AFK` when agents can proceed after
+intake, or `Execution Mode: HITL` when human review, decisions, credentials, or
+external access are expected before completion.
 
 ## Normal Story
 
@@ -58,3 +61,9 @@ in_progress -> blocked -> in_progress
 Use `paused` when work started but stopped with a handoff. Use `blocked` when
 work cannot continue until missing input, a decision, or an external condition
 is resolved.
+
+## Readiness
+
+Use `ready-for-agent` when scope, affected files, validation expectations, and
+stop conditions are clear. Use `ready-for-human` when the next useful action is
+a human decision, review, or external access step.

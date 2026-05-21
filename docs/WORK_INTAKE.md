@@ -30,6 +30,10 @@ Run risk checklist
 Choose lane: tiny, normal, or high-risk
 ```
 
+If `docs/ADOPTION_STATUS.md` exists and says `not_started`, classify the next
+project-context task as first existing-project adoption unless the human
+explicitly asks for unrelated work.
+
 ## Input Types
 
 Use the input type to decide where the work should land before choosing the risk
@@ -45,7 +49,9 @@ matrix rows, and decisions.
 | New initiative | Adding a larger product area that needs multiple stories | Initiative notes plus story packets |
 | Maintenance request | Changing technical, operational, or dependency behavior | Story packet, validation report, or decision |
 | Existing-project adoption | Incorporating the harness into a project that already has local code, docs, tests, commands, or conventions | `docs/PROJECT_ADOPTION.md`, adapted `AGENTS.md`, story backlog and packet, product docs, matrix rows, decisions |
+| First existing-project adoption | First run after Crisp Harness is installed into an existing project | `docs/ADOPTION_STATUS.md`, `docs/FIRST_ADOPTION.md`, adoption story or blocker |
 | Harness improvement | Improving how humans and agents collaborate | Direct docs update or `docs/HARNESS_BACKLOG.md` |
+| Prototype or spike | Answering one narrow implementation, provider, feasibility, or design question before committing to production work | `docs/templates/prototype.md`, story note, decision, or backlog item |
 | Resume request | Continuing paused, blocked, or handed-off work | Handoff review plus story or matrix update |
 
 Do not create or extend a monolithic spec by default after intake. Use product
@@ -82,6 +88,9 @@ Requirements:
   all data, then all services, then all interfaces at once.
 - Implement the smallest vertical slice when implementation exists.
 - Update `docs/TEST_MATRIX.md`.
+- Mark `Execution Mode: AFK` only when an agent can continue without hidden
+  human decisions, credentials, or external access. Otherwise use `HITL` and
+  state the specific human need.
 
 ### High-Risk
 
@@ -161,6 +170,16 @@ Hard gates:
 - Audit/security.
 - External provider behavior.
 - Removing or weakening validation requirements.
+
+## Prototype Policy
+
+Use a prototype only to answer one named question. Give it one run command, a
+timebox, allowed write scope, forbidden changes, expected signal, and cleanup
+plan. Prototype code is not implementation proof until it is absorbed into a
+story and validated through the story's contract.
+
+Delete the prototype or record the decision it informed before marking related
+work implemented.
 
 ## Output
 

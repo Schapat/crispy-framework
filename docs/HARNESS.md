@@ -72,6 +72,9 @@ Crisp Harness v0 includes:
 - General project governance rules.
 - Project-start guidance.
 - Existing-project adoption guidance.
+- First-adoption status marker and low-context adoption playbook.
+- Local agent configuration docs for tracker, work-state, and domain-language
+  conventions.
 - Empty product documentation structure.
 - Intake snapshot structure for supplied specs, prompts, governance intake, and
   future TUI output.
@@ -82,6 +85,7 @@ Crisp Harness v0 includes:
 - Continuity and agent onboarding guidance.
 - Evaluation guidance for long-running or multi-agent work.
 - Story templates.
+- Prototype template for temporary one-question spikes.
 - Handoff template.
 - Decision log template.
 - Validation report template.
@@ -163,8 +167,14 @@ docs/intake/*
 docs/product/*
   current product contract derived from accepted input
 
+docs/ADOPTION_STATUS.md and docs/FIRST_ADOPTION.md
+  first-run adoption marker and low-context adoption route
+
 docs/stories/*
   story-sized work packets and historical evidence
+
+docs/agents/*
+  local agent configuration for issue tracker, readiness states, and domain docs
 
 docs/TEST_MATRIX.md
   behavior-to-proof control panel

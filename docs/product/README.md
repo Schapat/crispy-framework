@@ -10,6 +10,13 @@ domains that actually exist in that spec, for example `overview.md`,
 Do not create domain files before the spec just to fill the folder. Empty
 structure is healthier than fake product truth.
 
+## Domain Language
+
+When project-specific language becomes accepted product truth, create
+`docs/product/glossary.md` from `docs/templates/product-glossary.md`. Keep that
+file focused on domain terms, user-facing concepts, and product names. Keep
+harness and collaboration terms in `docs/GLOSSARY.md`.
+
 ## Update Rule
 
 When behavior changes:

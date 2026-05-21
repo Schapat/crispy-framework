@@ -20,6 +20,24 @@ Before proposing implementation shape, identify:
 Record stack choices in `docs/decisions/` when they meaningfully constrain
 future work.
 
+## Architecture Review Lens
+
+Use these questions before introducing a durable abstraction or changing a
+module boundary:
+
+- Deletion test: if this abstraction disappeared, would the surrounding code
+  become simpler or more repetitive in a meaningful way?
+- Public interface: can callers understand the module through its exported API,
+  command, route, or UI contract without reading internals?
+- Locality: are concepts that change together close together?
+- Depth: does the module hide real complexity behind a small interface, or only
+  rename a shallow operation?
+- Leverage: will this boundary make future stories safer, easier to test, or
+  easier for agents to hold in context?
+
+If the answer is unclear, keep the design local until a story proves the
+boundary needs to become durable.
+
 ## Default Layering
 
 ```text

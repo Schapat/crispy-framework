@@ -52,7 +52,7 @@ review conflicts and ask an AI agent to adapt the harness manually for the
 target project.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vietdzungdang/agent-harness/main/scripts/install-harness.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash
 ```
 
 ```bash
@@ -66,7 +66,7 @@ payload. This repository's historical decision records are also not installed;
 target projects start with `docs/decisions/README.md` and the decision template.
 
 The remote installer defaults to
-`https://raw.githubusercontent.com/vietdzungdang/agent-harness/main`. If the
+`https://raw.githubusercontent.com/dzungbk156/crispy-framework/main`. If the
 published repository path changes, update the script default or set
 `HARNESS_SOURCE_BASE_URL` to the raw file base URL for that repository.
 

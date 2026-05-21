@@ -58,8 +58,9 @@ engineering questions without relying only on chat history:
 
 In this repo, those answers live in `AGENTS.md`, `docs/HARNESS.md`,
 `docs/PROJECT_GOVERNANCE.md`, `docs/PROJECT_START.md`,
+`docs/ADOPTION_STATUS.md`, `docs/FIRST_ADOPTION.md`,
 `docs/WORK_INTAKE.md`, `docs/CONTINUITY.md`,
-`docs/AGENT_ONBOARDING.md`, `docs/ARCHITECTURE.md`,
+`docs/AGENT_ONBOARDING.md`, `docs/agents/`, `docs/ARCHITECTURE.md`,
 `docs/EVALUATION.md`, `docs/TEST_MATRIX.md`, `docs/stories/`,
 `docs/intake/`, `docs/handoffs/`, `docs/AGENT_ROLES.md`,
 `docs/decisions/`, and `docs/templates/`.
@@ -112,6 +113,8 @@ a real project supplies one.
 - `docs/PROJECT_GOVERNANCE.md`: general governance rules before coding.
 - `docs/PROJECT_START.md`: project-start intake flow.
 - `docs/PROJECT_ADOPTION.md`: existing-project adoption flow.
+- `docs/ADOPTION_STATUS.md`: first-adoption marker and readiness checklist.
+- `docs/FIRST_ADOPTION.md`: low-context first-adoption workflow.
 - `docs/WORK_INTAKE.md`: tiny, normal, and high-risk work classification.
 - `docs/CONTINUITY.md`: pause, resume, and handoff rules.
 - `docs/AGENT_ONBOARDING.md`: how a new AI agent joins or resumes work.
@@ -137,9 +140,12 @@ project/
     PROJECT_GOVERNANCE.md
     PROJECT_START.md
     PROJECT_ADOPTION.md
+    ADOPTION_STATUS.md
+    FIRST_ADOPTION.md
     WORK_INTAKE.md
     CONTINUITY.md
     AGENT_ONBOARDING.md
+    agents/
     ARCHITECTURE.md
     EVALUATION.md
     TEST_MATRIX.md
@@ -167,7 +173,7 @@ After publishing this repository, run the installer from the target project
 directory:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/vietdzungdang/agent-harness/main/scripts/install-harness.sh | bash
+curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash
 ```
 
 During local development, run:

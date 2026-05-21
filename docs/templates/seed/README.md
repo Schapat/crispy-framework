@@ -15,6 +15,7 @@ For agent work, read:
 
 - `AGENTS.md`
 - `docs/WORK_INTAKE.md`
+- `docs/ADOPTION_STATUS.md` and `docs/FIRST_ADOPTION.md` for first existing-project adoption
 - `docs/HARNESS.md`
 - `docs/PROJECT_START.md` for new project/spec intake
 - `docs/CONTINUITY.md` and `docs/handoffs/` for resumed work
@@ -25,6 +26,7 @@ Target projects own their local harness after install. As the project evolves,
 keep these files current:
 
 - `docs/product/` for current product truth
+- `docs/agents/` for local issue tracker, readiness, and domain-language rules
 - `docs/stories/` for story packets and evidence
 - `docs/TEST_MATRIX.md` for behavior-to-proof mapping
 - `docs/decisions/` for durable rationale
