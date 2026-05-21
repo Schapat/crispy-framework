@@ -2,7 +2,13 @@
 
 ## Status
 
-implemented
+retired
+
+## Retirement Note
+
+Retired on 2026-05-21. The source repository no longer carries the
+`scripts/governance-intake` helper or its validation wrapper because they are no
+longer needed.
 
 ## Lane
 

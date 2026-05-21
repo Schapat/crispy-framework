@@ -2,26 +2,6 @@
 
 This directory is reserved for harness automation.
 
-## Governance Intake
-
-`scripts/governance-intake` is a terminal wizard for project-start governance.
-It collects project context and writes markdown artifacts only:
-
-- `docs/intake/INTAKE-project-start.md`
-- `docs/product/overview.md`
-- `docs/stories/backlog.md`
-- `docs/TEST_MATRIX.md`
-- `docs/decisions/0001-project-start-governance.md`
-
-It does not scaffold application source folders, package scripts, CI, tests,
-platform shells, or implementation code.
-
-Repeatable validation:
-
-```bash
-scripts/test-governance-intake.sh
-```
-
 ## Installer
 
 The installer applies the Crisp Harness v0 operating files and folder structure
