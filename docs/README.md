@@ -12,6 +12,10 @@ future user-provided spec.
 - `ADOPTION_STATUS.md`: first-adoption marker and readiness checklist.
 - `FIRST_ADOPTION.md`: low-context first adoption workflow.
 - `WORK_INTAKE.md`: how prompts become tiny, normal, or high-risk work.
+- `CONTEXT_RULES.md`: what to read by phase, lane, and retrieval trigger.
+- `TRACE_SPEC.md`: trace evidence fields, quality tiers, and friction capture.
+- `HARNESS_COMPONENTS.md`: responsibility map for diagnosing harness gaps.
+- `HARNESS_MATURITY.md`: measurable maturity ladder for harness growth.
 - `CONTINUITY.md`: how unfinished work is paused, resumed, or handed off.
 - `AGENT_ONBOARDING.md`: how a new AI agent joins a project/session.
 - `agents/`: local agent configuration for issue trackers, work states, and
@@ -21,6 +25,9 @@ future user-provided spec.
 - `ARCHITECTURE.md`: architecture discovery and boundary rules.
 - `EVALUATION.md`: evaluator role, failure thresholds, and stub detection.
 - `TEST_MATRIX.md`: living map of behavior to proof.
+- `TOOL_REGISTRY.md`: repository-local CLI command and tool registry contract.
+- `HARNESS_AUDIT.md`: durable-state drift checks and entropy score.
+- `IMPROVEMENT_PROTOCOL.md`: audit/friction-to-improvement proposal loop.
 - `HARNESS_BACKLOG.md`: improvements discovered while working.
 - `GLOSSARY.md`: shared terms.
 
@@ -36,8 +43,16 @@ future user-provided spec.
 - `templates/`: reusable spec-intake, story, context, mission, handoff,
   decision, and validation formats.
 
+## Tooling
+
+- `../scripts/schema/`: SQLite migrations for the local durable harness layer.
+- `../scripts/bin/harness-cli`: ignored local CLI binary installed from release
+  assets.
+- `../crates/harness-cli/`: Rust source for the Harness CLI.
+
 ## Current State
 
-Crisp Harness v0 exists before implementation. These docs define how the
-project will grow; they do not imply that app code, tests, CI, mission
-automation, or deployment automation exist yet.
+Crisp Harness v0 exists before application implementation. These docs and the
+local Harness CLI define how the project will grow; they do not imply that app
+code, product tests, CI, mission automation, deployment automation, or a product
+stack exist yet.

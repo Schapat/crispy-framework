@@ -20,11 +20,15 @@ only the lane-specific files needed for the task:
 | Existing project adoption | `docs/PROJECT_ADOPTION.md`, local README/docs/tests/scripts |
 | Normal story-sized work | related story, `docs/TEST_MATRIX.md`, relevant `docs/product/` files |
 | High-risk or architecture-shaping work | `docs/ARCHITECTURE.md`, `docs/EVALUATION.md`, relevant decisions |
+| Observability, maturity, trace, or harness-friction work | `docs/CONTEXT_RULES.md`, `docs/TRACE_SPEC.md`, `docs/HARNESS_COMPONENTS.md`, `docs/HARNESS_MATURITY.md` |
+| Durable CLI, tool, audit, or proposal work | `docs/TOOL_REGISTRY.md`, `docs/HARNESS_AUDIT.md`, `docs/IMPROVEMENT_PROTOCOL.md`, `scripts/README.md` |
 | Long-running or multi-agent work | `docs/AGENT_ROLES.md`, selected Crisp templates, `docs/templates/handoff.md` |
 | Resume or inherited work | `docs/CONTINUITY.md`, `docs/AGENT_ONBOARDING.md`, active handoff |
 
 Use `docs/HARNESS.md` for the full governance model and `docs/decisions/` only
 when rationale matters for the current change.
+Use `docs/CONTEXT_RULES.md` when the task needs more precise read-scope guidance
+than this router provides.
 Use `docs/agents/` when local issue tracker rules, story readiness states, or
 domain-language conventions matter for the current task.
 If `docs/ADOPTION_STATUS.md` says `not_started`, route through
@@ -53,7 +57,9 @@ For every task:
 3. Check for active handoffs or paused stories unless the human explicitly
    starts unrelated work.
 4. Locate the affected product docs, story files, proof rows, and decisions.
-5. Check `docs/TEST_MATRIX.md` for existing proof and gaps.
+5. Check `docs/TEST_MATRIX.md` for existing proof and gaps. If
+   `scripts/bin/harness-cli` exists, also run
+   `scripts/bin/harness-cli query matrix`.
 6. Work only inside the selected lane: tiny, normal, or high-risk.
 7. Use the full Crisp pipeline for high-risk, long-running, multi-agent, or
    resumed work. For normal work, use Crisp artifacts when uncertainty,
@@ -65,7 +71,11 @@ For every task:
    - Did architecture rules change?
    - Did we discover a repeated failure pattern?
    - Did the next agent need a clearer instruction?
-9. Update routine harness files directly, or add a proposal to
+9. For normal, high-risk, resumed, or friction-bearing work, leave trace
+   evidence at the depth required by `docs/TRACE_SPEC.md`. If
+   `scripts/bin/harness-cli` exists, record durable trace state when it helps
+   future agents.
+10. Update routine harness files directly, or add a proposal to
    `docs/HARNESS_BACKLOG.md` when the change is structural.
 
 ## Crisp Mission Rules
@@ -104,6 +114,7 @@ A task is done only when:
 - Validation commands were run when they exist.
 - Evaluator or handoff notes exist when the work is long-running, normal lane,
   high-risk, or likely to be resumed by another agent.
+- Trace evidence exists when required by `docs/TRACE_SPEC.md`.
 - Unfinished work is marked `paused` or `blocked` and has a handoff under
   `docs/handoffs/`.
 - Missing harness capabilities were added to `docs/HARNESS_BACKLOG.md`.

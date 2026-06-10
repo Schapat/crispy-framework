@@ -79,6 +79,10 @@ Crisp Harness v0 includes:
 - Intake snapshot structure for supplied specs, prompts, governance intake, and
   future TUI output.
 - Work intake and risk lanes.
+- Context retrieval rules by phase and risk lane.
+- Trace evidence fields and quality tiers.
+- Harness component taxonomy for failure attribution and friction routing.
+- Harness maturity ladder for measurable improvement.
 - Staged context templates for questions, research, design, structure, validation,
   and mission planning.
 - Agent role guidance for orchestrator, discovery, worker, and validator work.
@@ -91,6 +95,9 @@ Crisp Harness v0 includes:
 - Validation report template.
 - Test matrix placeholder.
 - Harness growth backlog.
+- Repository-local Rust CLI for durable harness records.
+- SQLite schema migrations for intake, stories, decisions, backlog, traces,
+  tool registry, and interventions.
 
 The installed harness is a canonical default. It should give target projects a
 strong starting operating model, then be adapted locally as the target project's
@@ -112,10 +119,33 @@ Harness v0 deliberately excludes:
 - Package scripts.
 - Test runner config.
 - CI workflows.
-- Database migrations or infrastructure.
 - Mission runner or router automation.
 
 Those should arrive only when a selected story needs them.
+
+## Observable Operations
+
+Crisp Harness keeps policy in markdown and operational state in a local durable
+layer. Normal and high-risk work should leave structured evidence in both the
+story-oriented docs and, when available, the CLI records.
+
+- Use `docs/CONTEXT_RULES.md` when a task needs more precise read-scope guidance
+  than `AGENTS.md` provides.
+- Use `docs/TRACE_SPEC.md` to decide how much trace evidence to leave.
+- Use `docs/HARNESS_COMPONENTS.md` to attribute repeated friction to a harness
+  responsibility.
+- Use `docs/HARNESS_MATURITY.md` when making maturity or process-improvement
+  claims.
+- Use `scripts/bin/harness-cli query matrix` for the durable story proof view.
+- Use `scripts/bin/harness-cli query backlog`, `query decisions`, `query
+  traces`, and `query friction` when the task needs queryable operational
+  history.
+- Use `scripts/bin/harness-cli audit` and `propose` when drift or repeated
+  friction should be turned into follow-up work.
+
+The generated `harness.db` is local operational data and is ignored by git.
+Markdown docs, stories, decisions, and the test matrix remain the reviewable
+contract that agents update when accepted behavior changes.
 
 ## Crisp Context Pipeline
 
@@ -221,7 +251,7 @@ human intent or supplied spec
   -> define validation proof
   -> implement or document the blocker
   -> update product docs, stories, test matrix, and decisions
-  -> capture harness friction
+  -> capture trace evidence and harness friction
 ```
 
 ## Evaluation Loop
@@ -264,6 +294,8 @@ The harness grows from friction.
 When an agent is confused, repeats manual reasoning, needs a new validation
 command, discovers a missing rule, or sees a recurring failure pattern, it must
 either improve the harness directly or add a proposal to `HARNESS_BACKLOG.md`.
+For normal and high-risk work, also record the friction in the trace evidence
+expected by `docs/TRACE_SPEC.md`.
 
 Every harness component is a hypothesis about what agents need help
 remembering, proving, or coordinating. Add process when it removes real failure

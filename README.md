@@ -59,11 +59,16 @@ engineering questions without relying only on chat history:
 In this repo, those answers live in `AGENTS.md`, `docs/HARNESS.md`,
 `docs/PROJECT_GOVERNANCE.md`, `docs/PROJECT_START.md`,
 `docs/ADOPTION_STATUS.md`, `docs/FIRST_ADOPTION.md`,
-`docs/WORK_INTAKE.md`, `docs/CONTINUITY.md`,
+`docs/WORK_INTAKE.md`, `docs/CONTEXT_RULES.md`, `docs/TRACE_SPEC.md`,
+`docs/HARNESS_COMPONENTS.md`, `docs/HARNESS_MATURITY.md`,
+`docs/CONTINUITY.md`,
 `docs/AGENT_ONBOARDING.md`, `docs/agents/`, `docs/ARCHITECTURE.md`,
 `docs/EVALUATION.md`, `docs/TEST_MATRIX.md`, `docs/stories/`,
 `docs/intake/`, `docs/handoffs/`, `docs/AGENT_ROLES.md`,
-`docs/decisions/`, and `docs/templates/`.
+`docs/decisions/`, `docs/templates/`, `docs/TOOL_REGISTRY.md`,
+`docs/HARNESS_AUDIT.md`, `docs/IMPROVEMENT_PROTOCOL.md`,
+`scripts/schema/`, and the repository-local Harness CLI at
+`scripts/bin/harness-cli`.
 
 ## Crisp Workflow
 
@@ -116,6 +121,12 @@ a real project supplies one.
 - `docs/ADOPTION_STATUS.md`: first-adoption marker and readiness checklist.
 - `docs/FIRST_ADOPTION.md`: low-context first-adoption workflow.
 - `docs/WORK_INTAKE.md`: tiny, normal, and high-risk work classification.
+- `docs/CONTEXT_RULES.md`: phase-by-lane guidance for what to read and when to
+  stop reading.
+- `docs/TRACE_SPEC.md`: trace evidence fields and quality tiers.
+- `docs/HARNESS_COMPONENTS.md`: responsibility map for harness friction and
+  coverage.
+- `docs/HARNESS_MATURITY.md`: measurable H0-H5 ladder for harness growth.
 - `docs/CONTINUITY.md`: pause, resume, and handoff rules.
 - `docs/AGENT_ONBOARDING.md`: how a new AI agent joins or resumes work.
 - `docs/AGENT_ROLES.md`: orchestrator, discovery, worker, and validator role
@@ -124,10 +135,15 @@ a real project supplies one.
 - `docs/EVALUATION.md`: evaluator contract, failure thresholds, and stub
   detection.
 - `docs/HARNESS_BACKLOG.md`: proposed harness improvements.
+- `docs/TOOL_REGISTRY.md`: durable CLI command and external tool registry.
+- `docs/HARNESS_AUDIT.md`: drift audit and entropy score contract.
+- `docs/IMPROVEMENT_PROTOCOL.md`: trace/friction-to-improvement loop.
 - `docs/intake/`: input snapshots from specs, prompts, governance intake, or
   future TUI output.
 - `docs/templates/`: reusable spec-intake, story, context, mission, handoff,
   decision, and validation templates.
+- `scripts/schema/`: SQLite migrations for the local durable harness layer.
+- `crates/harness-cli/`: Rust source for the repository-local Harness CLI.
 
 ## Repository Structure
 
@@ -143,12 +159,19 @@ project/
     ADOPTION_STATUS.md
     FIRST_ADOPTION.md
     WORK_INTAKE.md
+    CONTEXT_RULES.md
+    TRACE_SPEC.md
+    HARNESS_COMPONENTS.md
+    HARNESS_MATURITY.md
     CONTINUITY.md
     AGENT_ONBOARDING.md
     agents/
     ARCHITECTURE.md
     EVALUATION.md
     TEST_MATRIX.md
+    TOOL_REGISTRY.md
+    HARNESS_AUDIT.md
+    IMPROVEMENT_PROTOCOL.md
     HARNESS_BACKLOG.md
     AGENT_ROLES.md
     product/
@@ -159,6 +182,10 @@ project/
     templates/
   scripts/
     README.md
+    schema/
+    bin/harness-cli
+  crates/
+    harness-cli/
 ```
 
 ## Working Rule
@@ -186,6 +213,12 @@ Installation is a one-time framework copy. After install, the target project
 owns its local harness files, decisions, test matrix, backlog, and adaptations.
 This source repository does not act as an ongoing upstream dependency for target
 projects.
+
+The installer also tries to install the prebuilt repository-local Harness CLI at
+`scripts/bin/harness-cli` when a supported release asset exists. If the CLI
+asset is not published yet, installation continues with the markdown harness and
+schema files. Pass `--no-cli` for a markdown-only harness install, or
+`--require-cli` when a missing CLI binary should fail the install.
 
 The installed harness is a canonical default, not sacred text. Target projects
 should adapt it once their product, stack, proof commands, risk boundaries, and

@@ -97,6 +97,45 @@ proposed
 
 ### Title
 
+Optional durable harness state investigation.
+
+### Discovered While
+
+Comparing Crisp Harness with `harness-experimental`.
+
+### Current Pain
+
+Crisp Harness now defines trace, maturity, context, and component expectations
+in markdown, but story status, proof rows, decisions, backlog items, and trace
+evidence remain distributed across files and cannot be queried from one
+structured surface.
+
+### Suggested Improvement
+
+Create a future story to evaluate whether Crisp should add an optional durable
+state layer. The investigation should cover schema shape, markdown import,
+installer impact, target-project opt-in behavior, rollback, and whether a CLI is
+worth the maintenance cost.
+
+### Risk
+
+normal
+
+### Status
+
+implemented
+
+### Actual Outcome
+
+Implemented by `docs/stories/epics/E01-harness-quality/US-015-durable-harness-cli.md`.
+Crisp now has Rust CLI source, SQLite schema migrations, a local
+`scripts/bin/harness-cli` command path, durable query docs, and installer support
+for schema plus CLI binary installation.
+
+## Missing Harness Capability
+
+### Title
+
 Target-safe glossary split.
 
 ### Discovered While

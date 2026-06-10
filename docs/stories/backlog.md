@@ -12,3 +12,9 @@ the work is selected or when a product decision needs a durable place to land.
 | --- | --- | --- |
 | TBD | Add candidate epics after spec intake | unsliced |
 | E01-harness-quality | Improve evaluator, handoff, and proof-quality contracts for agent work | active |
+
+## Candidate Stories
+
+| Story | Description | Status |
+| --- | --- | --- |
+| Durable harness state investigation | Evaluate whether Crisp should add an optional queryable state layer for intake, stories, decisions, backlog, and traces. | implemented by `US-015` |

@@ -17,6 +17,10 @@ For agent work, read:
 - `docs/WORK_INTAKE.md`
 - `docs/ADOPTION_STATUS.md` and `docs/FIRST_ADOPTION.md` for first existing-project adoption
 - `docs/HARNESS.md`
+- `docs/CONTEXT_RULES.md` and `docs/TRACE_SPEC.md` for normal, high-risk, or
+  resumed work
+- `docs/TOOL_REGISTRY.md`, `docs/HARNESS_AUDIT.md`, and
+  `docs/IMPROVEMENT_PROTOCOL.md` when using the local Harness CLI
 - `docs/PROJECT_START.md` for new project/spec intake
 - `docs/CONTINUITY.md` and `docs/handoffs/` for resumed work
 
@@ -30,7 +34,10 @@ keep these files current:
 - `docs/stories/` for story packets and evidence
 - `docs/TEST_MATRIX.md` for behavior-to-proof mapping
 - `docs/decisions/` for durable rationale
+- `docs/HARNESS_COMPONENTS.md` and `docs/HARNESS_MATURITY.md` for harness
+  quality, friction, and maturity reviews
 - `docs/HARNESS_BACKLOG.md` for missing harness capabilities
+- `scripts/bin/harness-cli` for local durable harness queries, when installed
 
 ## Local Adaptation
 

@@ -57,6 +57,23 @@ matrix rows, and decisions.
 Do not create or extend a monolithic spec by default after intake. Use product
 docs, stories, decisions, and initiative notes as the living surface.
 
+## Durable Layer
+
+When `scripts/bin/harness-cli` exists, use it as the queryable operational layer
+alongside markdown:
+
+- `scripts/bin/harness-cli intake ...` records work classification.
+- `scripts/bin/harness-cli query matrix` shows durable story proof state.
+- `scripts/bin/harness-cli story add/update` records story status and proof
+  flags.
+- `scripts/bin/harness-cli trace ...` records execution evidence.
+- `scripts/bin/harness-cli audit` and `propose` surface drift and improvement
+  candidates.
+
+Markdown docs, story packets, decisions, and `docs/TEST_MATRIX.md` remain the
+reviewable source of accepted contract changes. The local `harness.db` is
+ignored by git and stores operational records that help agents query history.
+
 ## Lanes
 
 ### Tiny
@@ -69,6 +86,8 @@ Requirements:
 - Keep affected docs current.
 - Run available quick checks.
 - Update the harness only if friction was found.
+- Leave Minimal trace evidence when the task changes accepted harness behavior
+  or discovers friction.
 
 ### Normal
 
@@ -87,7 +106,9 @@ Requirements:
 - Prefer vertical slices with proof checkpoints over horizontal plans that do
   all data, then all services, then all interfaces at once.
 - Implement the smallest vertical slice when implementation exists.
-- Update `docs/TEST_MATRIX.md`.
+- Update `docs/TEST_MATRIX.md` and durable story state when the CLI is
+  available.
+- Leave Standard trace evidence using `docs/TRACE_SPEC.md`.
 - Mark `Execution Mode: AFK` only when an agent can continue without hidden
   human decisions, credentials, or external access. Otherwise use `HITL` and
   state the specific human need.
@@ -106,6 +127,7 @@ Requirements:
   validation checkpoints.
 - Ask for human confirmation before implementation if direction is ambiguous.
 - Record a decision when behavior or architecture changes meaningfully.
+- Leave Detailed trace evidence using `docs/TRACE_SPEC.md`.
 
 ## Crisp Mission Routing
 
@@ -121,6 +143,11 @@ contracts, validation expectations, or coordination needs justify it:
 | Structure | `docs/templates/structure-outline.md` | Define vertical slices, order, and proof checkpoints. |
 | Validation | `docs/templates/validation-contract.md` | Define correctness before implementation. |
 | Mission | `docs/templates/mission-plan.md` | Assign slices, handoffs, validators, and stop conditions. |
+
+Use `docs/CONTEXT_RULES.md` when a task needs more precise guidance about what
+to read during intake, planning, implementation, validation, or trace phases.
+Use `docs/HARNESS_COMPONENTS.md` and `docs/HARNESS_MATURITY.md` when a task
+makes observability, maturity, or harness-friction claims.
 
 `AGENTS.md` remains the first entrypoint. Use `docs/AGENT_ROLES.md` only when role
 separation helps the work.
@@ -191,6 +218,7 @@ Reason: touches authorization, API contract, and audit behavior.
 Docs: permissions, account-settings, audit-log.
 Story: docs/stories/epics/E02-access-control/ST-014-manager-updates-role.md.
 Validation: unit, integration, E2E.
+Trace: Standard evidence in story and test matrix.
 ```
 
 For resume requests, include:
