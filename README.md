@@ -93,6 +93,11 @@ the orchestrator about scope, review the short design and structure artifacts,
 approve validation expectations, and still own the final code. The harness
 exists to make that review smaller, earlier, and more honest.
 
+Before installing Crisp Harness into another repository, read
+`docs/demo/README.md` first. It shows the expected adoption flow, how humans and
+agents should work after install, and what a well-adapted target repository
+should be able to answer.
+
 ## Product Sources
 
 No product contract is currently defined.

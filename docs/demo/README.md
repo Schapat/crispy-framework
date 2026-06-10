@@ -1,22 +1,141 @@
-# Harness Demo Walkthrough
+# Crisp Harness Demo
 
-This walkthrough shows the kind of transformation Crisp Harness is designed to
-support. It is an example only. It is not an accepted product contract for this
-repository, and it is not part of the target install payload.
+This demo explains how a team should expect to work after adding Crisp Harness
+to a repository.
 
-Target projects should derive their own product truth, stories, decisions, and
-proof from their local context. Existing projects should preserve their local
-code, docs, tests, scripts, and conventions, then adapt the harness around that
-truth. When local tracker rules, readiness states, or domain-language
-conventions matter, record them under `docs/agents/` so future agents do not
-need to rediscover them from chat.
+Crisp Harness is not an app template. It does not install a frontend, backend,
+package scripts, CI, or fake tests. It installs a collaboration layer for humans
+and coding agents: entrypoint instructions, work intake, product docs, story
+packets, validation expectations, decisions, handoffs, trace evidence, and an
+optional local CLI-backed durable layer.
 
-For the first run after installing Crisp Harness into an existing project,
-`docs/ADOPTION_STATUS.md` starts as `not_started`. The agent should follow
-`docs/FIRST_ADOPTION.md` before normal feature work so it can adapt the harness
-without loading every governance document.
+Use this demo to understand the workflow. Do not copy its sample product
+details into a real target project. Target projects should derive their own
+truth from their existing README, docs, source code, tests, scripts, and human
+intent.
 
-## Input
+## What A User Should Expect
+
+After installing Crisp Harness into a project, the first useful result is not
+application code. The first result is a repository that tells an agent:
+
+- what to read first
+- whether the current request is tiny, normal, high-risk, adoption, or a new
+  spec
+- where accepted product truth lives
+- what story or proof row owns the work
+- which validation command should prove the change
+- what decision, trace, or handoff future agents should inherit
+
+Existing projects keep their local conventions. The installer creates missing
+harness files, preserves existing project files, appends to an existing
+`AGENTS.md` only when needed, and skips files that already exist. The target
+project owns its harness after installation.
+
+## Install Into A Project
+
+From the target project directory:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash
+```
+
+Strict install that fails if the CLI binary cannot be downloaded:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash -s -- --require-cli
+```
+
+Install into another directory:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash -s -- --directory /path/to/project
+```
+
+Markdown-only install:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/dzungbk156/crispy-framework/main/scripts/install-harness.sh | bash -s -- --no-cli
+```
+
+The installer tries to place a verified CLI binary at
+`scripts/bin/harness-cli`. The binary is ignored by git in target projects.
+
+## First Adoption In An Existing Project
+
+Fresh installs start with `docs/ADOPTION_STATUS.md` set to `not_started`.
+
+Before normal feature work, an agent should follow `docs/FIRST_ADOPTION.md` and
+adapt the harness to local truth:
+
+1. Read only the minimal entrypoint set:
+   - `README.md`
+   - `AGENTS.md`
+   - `docs/WORK_INTAKE.md`
+   - `docs/ADOPTION_STATUS.md`
+   - `docs/FIRST_ADOPTION.md`
+2. Inventory the project purpose, source folders, runtimes, commands, docs,
+   tests, scripts, and risky areas.
+3. Update only useful harness files, usually:
+   - `AGENTS.md`
+   - `docs/agents/`
+   - `docs/TEST_MATRIX.md`
+   - `docs/stories/backlog.md`
+   - `docs/product/` when stable product truth exists
+4. Create an adoption story or record the blocker.
+5. Set adoption status to `ready` or `blocked`.
+
+The goal is not to rewrite the project. The goal is to make future agent work
+safe, scoped, and reviewable.
+
+## Normal Work Loop
+
+Once adoption is ready, a typical request follows this loop:
+
+```text
+human request
+  -> classify with docs/WORK_INTAKE.md
+  -> find the affected product doc, story, matrix row, and decisions
+  -> choose tiny, normal, or high-risk lane
+  -> update or create the smallest useful story packet
+  -> define validation before implementation
+  -> make the change
+  -> run the agreed proof
+  -> update story, matrix, trace, and handoff state
+```
+
+Tiny work can be a direct patch with quick evidence. Normal work should have a
+story packet when behavior, validation, or coordination needs to be durable.
+High-risk work should use the full Crisp pipeline: context questions, research
+facts, design concept, structure outline, validation contract, mission plan,
+handoff, and validation.
+
+## CLI Workflow
+
+When `scripts/bin/harness-cli` exists, it gives agents a queryable local state
+layer alongside the markdown docs:
+
+```bash
+scripts/bin/harness-cli init
+scripts/bin/harness-cli migrate
+scripts/bin/harness-cli import brownfield
+scripts/bin/harness-cli query matrix
+```
+
+Useful task commands:
+
+```bash
+scripts/bin/harness-cli story add --id US-001 --title "Create task" --lane normal
+scripts/bin/harness-cli story update --id US-001 --status implemented --unit 1 --platform 0
+scripts/bin/harness-cli story verify US-001
+scripts/bin/harness-cli trace --summary "Implemented US-001" --outcome completed
+```
+
+Markdown remains the reviewable source of product contracts and story details.
+The local `harness.db` is ignored by git and stores operational records that
+help agents query history.
+
+## Example: New Product Spec
 
 A human brings a small product idea:
 
@@ -99,12 +218,6 @@ Changing assignee does not change task status.
 Once the product contract is clear enough, the agent creates a story packet from
 `docs/templates/story.md`.
 
-Tiny work can stay lightweight. Normal work should add Crisp context artifacts
-only when uncertainty, contracts, proof expectations, or coordination justify
-them. High-risk, long-running, resumed, or multi-agent work should use the full
-pipeline: context questions, research facts, design concept, structure outline,
-validation contract, mission plan, handoff, and validation.
-
 Example story:
 
 ```text
@@ -143,15 +256,10 @@ Example row:
 | US-001 Create a task | docs/product/tasks.md | yes | yes | yes | no | planned | none |
 ```
 
-The row should not be marked implemented until proof exists.
-Proof should prefer public interfaces, user-visible behavior, API contracts,
-command behavior, or durable module boundaries. Tests that only prove private
-helper details are weak proof unless that private boundary is the accepted
-contract for the slice.
-
-In target projects, this proof history starts from the blank seed matrix. The
-filled matrix rows in the harness source repository are temporary source
-traceability, not target-project history.
+The row should not be marked implemented until proof exists. Proof should prefer
+public interfaces, user-visible behavior, API contracts, command behavior, or
+durable module boundaries. Tests that only prove private helper details are weak
+proof unless that private boundary is the accepted contract for the slice.
 
 ## Decision Record
 
@@ -195,16 +303,18 @@ install application folders, package scripts, CI, test commands, or source
 helper scripts. Those should arrive only when a real target-project story
 selects a real stack and needs them.
 
-## Harness Delta
+## What Good Looks Like
 
-Every task also asks whether the harness itself should improve.
+A well-adopted target repo should eventually answer these questions without
+requiring old chat history:
 
-If this demo revealed that many projects need the same intake example, the
-right follow-up might be:
+- What is the project?
+- What local commands are safe and expected?
+- Which product docs define accepted behavior?
+- Which story owns the current change?
+- What proof will make the work done?
+- What decisions should future agents preserve?
+- What unfinished work has a handoff?
 
-```text
-Add a reusable example-spec walkthrough or starter fixture.
-```
-
-Small improvements can be made directly. Larger process changes should be
-proposed in `docs/HARNESS_BACKLOG.md`.
+If the harness cannot answer one of those questions, update the local harness or
+add a proposal to `docs/HARNESS_BACKLOG.md`.
