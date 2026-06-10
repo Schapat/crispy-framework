@@ -158,6 +158,13 @@ merge_agents_file() {
     return
   fi
 
+  if grep -Fq "This project uses Crisp Harness for AI-agent collaboration." "$target" &&
+     grep -Fq "docs/WORK_INTAKE.md" "$target"; then
+    log "skip     AGENTS.md (Crisp Harness guide already present)"
+    SKIPPED=$((SKIPPED + 1))
+    return
+  fi
+
   if [ "$DRY_RUN" -eq 1 ]; then
     log "merge    AGENTS.md (append Crisp Harness instructions)"
   else
