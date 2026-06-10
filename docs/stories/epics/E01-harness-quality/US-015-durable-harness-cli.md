@@ -53,6 +53,8 @@ contract.
 - CLI source and schema intake types align with `docs/WORK_INTAKE.md`; the
   installed prebuilt binary needs a future Crisp-owned rebuild before those
   source changes are available through `harness-cli intake`.
+- A GitHub Actions workflow can publish release assets for the platforms used by
+  the installer.
 - Installer support remains non-overwriting and can install the CLI/schema into
   target projects.
 - Harness docs describe the durable layer without removing markdown review
@@ -108,7 +110,7 @@ Artifacts to inspect:
 | Integration | CLI init/migrate/import/query against local `harness.db`. |
 | E2E | Installer dry-run or temp-target probe verifies schema and CLI install path. |
 | Platform | macOS arm64 prebuilt binary checksum verification and version check. |
-| Release | Deferred until Crisp-owned release assets are published. Current local binary is upstream `harness-cli 0.1.9`. |
+| Release | GitHub Actions release workflow publishes `harness-cli-v*` assets. |
 
 ## Harness Delta
 
@@ -161,4 +163,6 @@ Validation:
   docs and schema installed.
 - Remote-style installer probe with `--require-cli` failed when the CLI release
   was unavailable.
+- `.github/workflows/harness-cli-release.yml` added for tag-driven release
+  assets.
 - `cargo test` was not run because `cargo` is unavailable.

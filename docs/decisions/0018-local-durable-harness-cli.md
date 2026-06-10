@@ -43,9 +43,8 @@ Adapt the tooling to Crisp vocabulary:
   migrations, and CLI operational docs.
 - Rust validation requires a local Rust toolchain; this machine did not have
   `cargo` available during adoption, so Rust tests must be run later.
-- The installed local binary is upstream `harness-cli 0.1.9`; Crisp-specific
-  source changes require a future rebuild and Crisp-owned release publication
-  before remote installs receive them as binary behavior.
+- The release workflow publishes Crisp-owned binary assets from `harness-cli-v*`
+  tags so remote installs can receive the repository-local CLI.
 
 ## Verification
 

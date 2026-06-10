@@ -93,6 +93,9 @@ The Rust source for the CLI lives in `crates/harness-cli/`. Build release
 artifacts with `scripts/build-harness-cli-release.sh` on machines with a Rust
 toolchain.
 
+Release assets are published by `.github/workflows/harness-cli-release.yml`
+when a `harness-cli-v*` tag is pushed.
+
 ## Future Command Contract
 
 Expected future checks:
